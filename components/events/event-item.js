@@ -1,30 +1,30 @@
 import Link from "next/link";
+import classes from "./event-item.module.css";
 
 const EventItem = (props) => {
-  const { title, image, date, id,location } = props.item;
-  console.log(location);
+  const { title, image, date, id, location } = props.item;
   const humanReadableDate = new Date(date).toLocaleDateString("ko-KR", {
     day: "numeric",
     month: "long",
     year: "numeric",
   });
 
-  const formattedAddress =location.replace(',','\n');
+  const formattedAddress = location.replace(",", "\n");
   const exploreLink = `/events/${id}`;
   return (
-    <li>
+    <li className={classes.item}>
       <img src={"/" + image} alt={title} />
-      <div>
+      <div className={classes.content}>
         <div>
           <h2>{title}</h2>
-          <div>
+          <div className={classes.date}>
             <time>{humanReadableDate}</time>
           </div>
-          <div>
+          <div className={classes.address}>
             <address>{formattedAddress}</address>
           </div>
         </div>
-        <div>
+        <div className={classes.actions}>
           <Link href={exploreLink}>Explore Event</Link>
         </div>
       </div>
